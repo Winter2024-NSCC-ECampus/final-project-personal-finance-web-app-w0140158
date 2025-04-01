@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: finance_user_abuser
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: finance_db2
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  financeapp:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/finance_db2
+      SPRING_DATASOURCE_USERNAME: finance_user_abuser
+      SPRING_DATASOURCE_PASSWORD: password123
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data:
