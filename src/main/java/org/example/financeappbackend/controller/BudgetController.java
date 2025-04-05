@@ -22,8 +22,6 @@ public class BudgetController {
     @Autowired
     private CategoryService categoryService;
 
-
-
     // Get all budgets
     @GetMapping
     public List<Budget> getAllBudgets() {

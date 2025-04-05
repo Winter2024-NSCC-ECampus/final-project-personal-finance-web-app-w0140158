@@ -30,7 +30,47 @@ FinanceApp is a personal finance application designed to help you manage your tr
 - **Styling:**
     - Custom CSS with CSS variables for theme management
 
-## Getting Started
+## DB CMDs
+
+docker exec -it financeappbackend-postgres-1 psql -U finance_user_abuser -d finance_db2
+
+Stop and remove all containers, networks, etc.
+docker-compose down
+
+Rebuild the images and start containers in detached mode
+docker-compose up -d --build
+
+Check that your containers are running:
+docker ps
+
+PostgreSQL container's shell (adjust the container name if needed)
+docker exec -it financeappbackend-postgres-1 bash
+
+connect to your database using psql:
+psql -U finance_user_abuser -d finance_db2
+
+Inside the psql prompt, list all databases:
+\l
+
+List tables in the current database (finance_db2):
+\dt
+
+For example, describe the "budgets" table:
+\d budgets
+
+When done, exit psql:
+\q
+
+# And then exit the container shell:
+exit
+
+
+SELECT * FROM budgets;
+SELECT * FROM categories;
+SELECT * FROM investments;
+SELECT * FROM transaction_tags;
+SELECT * FROM transactions;
+
 
 ## API Enpoints
 
